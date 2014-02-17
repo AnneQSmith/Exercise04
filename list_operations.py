@@ -152,6 +152,8 @@ def custom_index(input_list, value):
     for i in range(custom_len(input_list)):
         if input_list[i] == value:
             return i
+    return -1
+
 #What happens if the value isn't in the list?
 
 def custom_count(input_list, value):
@@ -166,7 +168,7 @@ def custom_reverse(input_list):
     """custom_reverse(input_list) imitates input_list.reverse()"""
  # Saved to pythontutor.com --> http://goo.gl/8j1Wpg
 
-    for i in range(custom_len(input_list)+1):
+    for i in range(custom_len(input_list)):
         popped = custom_pop(input_list)
         custom_insert(input_list, i, popped)
 
@@ -184,7 +186,14 @@ def custom_equality(some_list, another_list):
     """custom_equality(some_list, another_list) imitates
     (some_list == another_list)
     """
-    if some_list == another_list:
-        return True
-    else:
+    slen = custom_len(some_list)
+    alen = custom_len(another_list)
+    
+    if not slen == alen:
         return False
+
+    for i in range (slen):
+        if not some_list[i] == another_list[i]:
+            return False
+
+    return True
